@@ -26,5 +26,9 @@ class Book(BaseModel):
     duration: str
     date: date
     summary: str
-    genres: List[Genre]
+    genres: List[Genre] = []
     pages: int
+
+
+class BookOut(Book):
+    id: int
