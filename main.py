@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Path
 from schemas import Book
 
 
@@ -28,3 +28,8 @@ def create_book(item: Book):
 @app.get('/book')
 def get_book(q: str = Query(None, min_length=2, max_length=5, description='Search book')):
     return q
+
+
+@app.get('/book/{pk}')
+def get_single_book(pk: int = Path(..., gt=1, le=20), pages: int = Query(None, gt=10, le=500)):
+    return {'pk': pk, 'pages': pages}
